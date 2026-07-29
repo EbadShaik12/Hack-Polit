@@ -1738,22 +1738,29 @@ const Dashboard = () => {
 
                 {/* Create / Edit Modal */}
                 {showModal && (
-                  <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm overflow-y-auto">
-                    <div className="w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-xl shadow-2xl p-6 relative my-8">
-                      <div className="flex justify-between items-center border-b border-slate-800 pb-3 mb-5">
-                        <h4 className="text-base font-bold text-white">
-                          {editingHackathon ? 'Edit Hackathon Details' : 'Create New Hackathon'}
-                        </h4>
+                  <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm overflow-y-auto">
+                    <div className="w-full max-w-2xl bg-white border border-slate-200 rounded-2xl shadow-xl p-6 relative my-8">
+                      {/* Modal Header */}
+                      <div className="flex justify-between items-center border-b border-slate-200 pb-4 mb-6">
+                        <div className="flex items-center gap-3">
+                          <div className="h-8 w-8 rounded-lg bg-blue-100 flex items-center justify-center border border-blue-200">
+                            <Plus className="h-4 w-4 text-blue-600" />
+                          </div>
+                          <h4 className="text-base font-bold text-slate-900">
+                            {editingHackathon ? 'Edit Hackathon Details' : 'Create New Hackathon'}
+                          </h4>
+                        </div>
                         <button
                           onClick={() => setShowModal(false)}
-                          className="text-slate-400 hover:text-white text-lg font-bold"
+                          className="h-8 w-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer font-bold text-lg"
                         >
                           &times;
                         </button>
                       </div>
 
                       {crudError && (
-                        <div className="mb-4 p-3 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-455 text-xs font-semibold">
+                        <div className="mb-4 p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-600 text-xs font-semibold flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-rose-500 flex-shrink-0"></span>
                           {crudError}
                         </div>
                       )}
@@ -1761,7 +1768,7 @@ const Dashboard = () => {
                       <form onSubmit={handleFormSubmit} className="space-y-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div className="space-y-1.5">
-                            <label className="text-xxs font-bold uppercase tracking-wider text-slate-400">Hackathon Title</label>
+                            <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Hackathon Title</label>
                             <input
                               type="text"
                               name="title"
@@ -1769,11 +1776,11 @@ const Dashboard = () => {
                               value={formData.title}
                               onChange={handleInputChange}
                               placeholder="e.g. Artificial Intelligence Challenge"
-                              className="block w-full px-3 py-2 bg-slate-950/80 border border-slate-800 rounded-lg text-slate-205 text-xs focus:ring-1 focus:ring-indigo-500 focus:outline-none"
+                              className="block w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-colors"
                             />
                           </div>
                           <div className="space-y-1.5">
-                            <label className="text-xxs font-bold uppercase tracking-wider text-slate-400">Theme / Focus</label>
+                            <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Theme / Focus</label>
                             <input
                               type="text"
                               name="theme"
@@ -1781,13 +1788,13 @@ const Dashboard = () => {
                               value={formData.theme}
                               onChange={handleInputChange}
                               placeholder="e.g. AI/ML, Blockchain"
-                              className="block w-full px-3 py-2 bg-slate-950/80 border border-slate-800 rounded-lg text-slate-205 text-xs focus:ring-1 focus:ring-indigo-500 focus:outline-none"
+                              className="block w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-colors"
                             />
                           </div>
                         </div>
 
                         <div className="space-y-1.5">
-                          <label className="text-xxs font-bold uppercase tracking-wider text-slate-400">Description</label>
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Description</label>
                           <textarea
                             name="description"
                             required
@@ -1795,49 +1802,49 @@ const Dashboard = () => {
                             value={formData.description}
                             onChange={handleInputChange}
                             placeholder="Describe what this hackathon is about..."
-                            className="block w-full px-3 py-2 bg-slate-950/80 border border-slate-800 rounded-lg text-slate-205 text-xs focus:ring-1 focus:ring-indigo-500 focus:outline-none"
+                            className="block w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-colors resize-none"
                           ></textarea>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           <div className="space-y-1.5">
-                            <label className="text-xxs font-bold uppercase tracking-wider text-slate-400">Start Date</label>
+                            <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Start Date</label>
                             <input
                               type="date"
                               name="startDate"
                               required
                               value={formData.startDate}
                               onChange={handleInputChange}
-                              className="block w-full px-3 py-2 bg-slate-950/80 border border-slate-800 rounded-lg text-slate-205 text-xs focus:ring-1 focus:ring-indigo-500 focus:outline-none"
+                              className="block w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-colors"
                             />
                           </div>
                           <div className="space-y-1.5">
-                            <label className="text-xxs font-bold uppercase tracking-wider text-slate-400">End Date</label>
+                            <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500">End Date</label>
                             <input
                               type="date"
                               name="endDate"
                               required
                               value={formData.endDate}
                               onChange={handleInputChange}
-                              className="block w-full px-3 py-2 bg-slate-950/80 border border-slate-800 rounded-lg text-slate-205 text-xs focus:ring-1 focus:ring-indigo-500 focus:outline-none"
+                              className="block w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-colors"
                             />
                           </div>
                           <div className="space-y-1.5">
-                            <label className="text-xxs font-bold uppercase tracking-wider text-slate-400">Reg. Deadline</label>
+                            <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Reg. Deadline</label>
                             <input
                               type="date"
                               name="registrationDeadline"
                               required
                               value={formData.registrationDeadline}
                               onChange={handleInputChange}
-                              className="block w-full px-3 py-2 bg-slate-950/80 border border-slate-805 text-slate-205 text-xs focus:ring-1 focus:ring-indigo-500 focus:outline-none"
+                              className="block w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-colors"
                             />
                           </div>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div className="space-y-1.5">
-                            <label className="text-xxs font-bold uppercase tracking-wider text-slate-400">Venue / Platform</label>
+                            <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Venue / Platform</label>
                             <input
                               type="text"
                               name="venue"
@@ -1845,25 +1852,25 @@ const Dashboard = () => {
                               value={formData.venue}
                               onChange={handleInputChange}
                               placeholder="e.g. Virtual, San Francisco HQ"
-                              className="block w-full px-3 py-2 bg-slate-950/80 border border-slate-800 rounded-lg text-slate-205 text-xs focus:ring-1 focus:ring-indigo-500 focus:outline-none"
+                              className="block w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-colors"
                             />
                           </div>
                           <div className="space-y-1.5">
-                            <label className="text-xxs font-bold uppercase tracking-wider text-slate-400">Banner Image URL</label>
+                            <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Banner Image URL</label>
                             <input
                               type="text"
                               name="bannerImage"
                               value={formData.bannerImage}
                               onChange={handleInputChange}
                               placeholder="Image link (Unsplash or custom)"
-                              className="block w-full px-3 py-2 bg-slate-950/80 border border-slate-800 rounded-lg text-slate-205 text-xs focus:ring-1 focus:ring-indigo-500 focus:outline-none"
+                              className="block w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-colors"
                             />
                           </div>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div className="space-y-1.5">
-                            <label className="text-xxs font-bold uppercase tracking-wider text-slate-400">Rules & Guidelines</label>
+                            <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Rules & Guidelines</label>
                             <textarea
                               name="rules"
                               required
@@ -1871,11 +1878,11 @@ const Dashboard = () => {
                               value={formData.rules}
                               onChange={handleInputChange}
                               placeholder="Add rules, limits, guidelines..."
-                              className="block w-full px-3 py-2 bg-slate-950/80 border border-slate-800 rounded-lg text-slate-205 text-xs focus:ring-1 focus:ring-indigo-500 focus:outline-none"
+                              className="block w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-colors resize-none"
                             ></textarea>
                           </div>
                           <div className="space-y-1.5">
-                            <label className="text-xxs font-bold uppercase tracking-wider text-slate-400">Judging Criteria</label>
+                            <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Judging Criteria</label>
                             <textarea
                               name="judgingCriteria"
                               required
@@ -1883,22 +1890,22 @@ const Dashboard = () => {
                               value={formData.judgingCriteria}
                               onChange={handleInputChange}
                               placeholder="e.g. Design 25%, Usability 25%, Originality 50%..."
-                              className="block w-full px-3 py-2 bg-slate-950/80 border border-slate-800 rounded-lg text-slate-205 text-xs focus:ring-1 focus:ring-indigo-500 focus:outline-none"
+                              className="block w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs placeholder:text-slate-400 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none transition-colors resize-none"
                             ></textarea>
                           </div>
                         </div>
 
-                        <div className="flex justify-end gap-3 pt-3 border-t border-slate-800 mt-5">
+                        <div className="flex justify-end gap-3 pt-4 border-t border-slate-200 mt-2">
                           <button
                             type="button"
                             onClick={() => setShowModal(false)}
-                            className="px-4 py-2 rounded-lg border border-slate-800 hover:bg-slate-850 text-slate-350 text-xs font-semibold cursor-pointer"
+                            className="px-4 py-2 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-600 text-xs font-semibold cursor-pointer transition-colors"
                           >
                             Cancel
                           </button>
                           <button
                             type="submit"
-                            className="px-5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition-all shadow-md shadow-indigo-600/20 cursor-pointer"
+                            className="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors shadow-sm cursor-pointer"
                           >
                             {editingHackathon ? 'Save Changes' : 'Create Hackathon'}
                           </button>
@@ -1907,6 +1914,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                 )}
+
 
                 {/* Organizer Teams Inspector Modal (Read-Only) */}
                 {showTeamsModal && (
