@@ -23,7 +23,7 @@ const OrganizerFeedback = () => {
     setLoading(true);
     setError('');
     try {
-      const res = await api.get('/api/feedback/organizer/all');
+      const res = await api.get('/feedback/organizer/all');
       setData(res.data);
     } catch (err) {
       console.error('Failed to load organizer feedback:', err);

@@ -46,7 +46,7 @@ const FeedbackModal = ({ hackathon, onClose, onSuccess }) => {
 
     setLoading(true);
     try {
-      await api.post('/api/feedback', {
+      await api.post('/feedback', {
         hackathonId: hackathon._id,
         rating,
         comment: comment.trim(),

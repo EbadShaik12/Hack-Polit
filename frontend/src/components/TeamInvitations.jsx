@@ -28,8 +28,8 @@ const TeamInvitations = ({ team, onTeamUpdated }) => {
     setLoading(true);
     try {
       const [myRes, sentRes] = await Promise.all([
-        api.get('/api/teams/invitations/my-invitations'),
-        isLeader ? api.get('/api/teams/invitations/sent') : Promise.resolve({ data: [] }),
+        api.get('/teams/invitations/my-invitations'),
+        isLeader ? api.get('/teams/invitations/sent') : Promise.resolve({ data: [] }),
       ]);
       setMyInvitations(myRes.data);
       setSentInvitations(sentRes.data);
@@ -56,7 +56,7 @@ const TeamInvitations = ({ team, onTeamUpdated }) => {
 
     setSubmitting(true);
     try {
-      const res = await api.post('/api/teams/invitations', {
+      const res = await api.post('/teams/invitations', {
         email: inviteEmail.trim(),
       });
       setSuccess(`Invitation sent to ${inviteEmail}!`);

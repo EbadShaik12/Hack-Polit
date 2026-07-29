@@ -58,8 +58,8 @@ const SponsorManager = () => {
     setError('');
     try {
       const [sponsorsRes, hackathonsRes] = await Promise.all([
-        api.get('/api/sponsors/organizer'),
-        api.get('/api/hackathons/organizer/all'),
+        api.get('/sponsors/organizer'),
+        api.get('/hackathons/organizer/all'),
       ]);
       setSponsors(sponsorsRes.data);
       setHackathons(hackathonsRes.data);
@@ -124,9 +124,9 @@ const SponsorManager = () => {
 
     try {
       if (editingSponsor) {
-        await api.put(`/api/sponsors/${editingSponsor._id}`, formData);
+        await api.put(`/sponsors/${editingSponsor._id}`, formData);
       } else {
-        await api.post('/api/sponsors', formData);
+        await api.post('/sponsors', formData);
       }
       setShowModal(false);
       fetchSponsors();
@@ -140,7 +140,7 @@ const SponsorManager = () => {
   const handleDelete = async (id, name) => {
     if (!window.confirm(`Are you sure you want to delete sponsor "${name}"?`)) return;
     try {
-      await api.delete(`/api/sponsors/${id}`);
+      await api.delete(`/sponsors/${id}`);
       fetchSponsors();
     } catch (err) {
       alert(err.response?.data?.message || 'Failed to delete sponsor');
