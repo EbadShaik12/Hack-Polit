@@ -15,6 +15,7 @@ import FeedbackModal from '../components/FeedbackModal';
 import TeamInvitations from '../components/TeamInvitations';
 import AdminAuditLogs from '../components/AdminAuditLogs';
 import api from '../services/api';
+import { GalleryContent } from './Gallery';
 
 const Dashboard = () => {
   const { user, logout } = useContext(AuthContext);
@@ -1083,8 +1084,8 @@ const Dashboard = () => {
                   </button>
                 )}
                 <button
-                  onClick={() => navigate('/gallery')}
-                  className="flex w-full items-center gap-3 px-4 py-2.5 rounded-lg font-medium transition-colors cursor-pointer text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                  onClick={() => { setActiveTab('gallery'); setMobileSidebarOpen(false); }}
+                  className={`flex w-full items-center gap-3 px-4 py-2.5 rounded-lg font-medium transition-colors cursor-pointer ${activeTab === 'gallery' ? 'bg-blue-50 text-blue-600 font-bold border-l-4 border-blue-600' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}
                 >
                   <Globe className="h-5 w-5" /> Project Gallery
                 </button>
@@ -1215,8 +1216,8 @@ const Dashboard = () => {
               </button>
             )}
             <button
-              onClick={() => navigate('/gallery')}
-              className="flex w-full items-center gap-3 px-4 py-2.5 rounded-lg font-medium transition-colors cursor-pointer text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+              onClick={() => setActiveTab('gallery')}
+              className={`flex w-full items-center gap-3 px-4 py-2.5 rounded-lg font-medium transition-colors cursor-pointer ${activeTab === 'gallery' ? 'bg-blue-50 text-blue-600 font-bold border-l-4 border-blue-600' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}
             >
               <Globe className="h-5 w-5" /> Project Gallery
             </button>
@@ -1291,9 +1292,12 @@ const Dashboard = () => {
             >
               Leaderboard
             </button>
-            <Link to="/gallery" className="hover:text-blue-600 transition-colors flex items-center gap-1">
+            <button
+              onClick={() => setActiveTab('gallery')}
+              className={`transition-colors cursor-pointer flex items-center gap-1 ${activeTab === 'gallery' ? 'text-blue-600 font-extrabold' : 'hover:text-blue-600'}`}
+            >
               <Globe className="h-3.5 w-3.5 text-slate-400" /> Project Gallery
-            </Link>
+            </button>
           </nav>
 
           <div className="flex items-center gap-3">
@@ -3174,8 +3178,15 @@ const Dashboard = () => {
               </div>
             )}
 
+
+            {/* ── Gallery Tab ────────────────────────────────────────────────── */}
+            {activeTab === 'gallery' && (
+              <GalleryContent />
+            )}
+
             {/* ── Settings Tab ────────────────────────────────────────────────── */}
             {activeTab === 'settings' && (
+
               <div className="space-y-6">
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
@@ -3503,11 +3514,11 @@ const Dashboard = () => {
               </div>
             )}
 
-            <div className="flex items-center justify-between pt-3 border-t border-slate-800 mt-5">
+            <div className="flex items-center justify-between pt-3 border-t border-slate-200 mt-5">
               <button
                 type="button"
-                onClick={() => navigate('/gallery')}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/20 text-indigo-400 text-xs font-semibold cursor-pointer transition-all"
+                onClick={() => { setShowSubmissionsModal(false); setActiveTab('gallery'); }}
+                className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-600 text-xs font-semibold cursor-pointer transition-all"
               >
                 <Globe className="h-3.5 w-3.5" /> View Public Gallery
               </button>
