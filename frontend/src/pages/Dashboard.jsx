@@ -1260,12 +1260,12 @@ const Dashboard = () => {
               <Menu className="h-5 w-5" />
             </button>
             <div className="flex items-center gap-2.5">
-              <Link to="/" className="flex items-center gap-2 text-slate-900 font-bold hover:text-blue-600 transition-colors">
+              <div className="flex items-center gap-2">
                 <div className="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white shadow-sm text-xs">
                   HP
                 </div>
-                <span className="hidden sm:inline font-bold tracking-tight text-base">HackPilot</span>
-              </Link>
+                <span className="hidden sm:inline font-bold tracking-tight text-base text-slate-900">HackPilot</span>
+              </div>
               <span className="text-slate-300 hidden sm:inline">|</span>
               <h1 className="text-sm md:text-base font-bold text-slate-800">Workspace Dashboard</h1>
             </div>
@@ -1273,9 +1273,6 @@ const Dashboard = () => {
 
           {/* Quick Top Nav Links */}
           <nav className="hidden lg:flex items-center gap-6 text-xs font-bold text-slate-600">
-            <Link to="/" className="hover:text-blue-600 transition-colors flex items-center gap-1">
-              <Home className="h-3.5 w-3.5 text-slate-400" /> Home
-            </Link>
             <button
               onClick={() => setActiveTab('overview')}
               className={`transition-colors cursor-pointer ${activeTab === 'overview' ? 'text-blue-600 font-extrabold' : 'hover:text-blue-600'}`}
