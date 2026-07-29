@@ -1394,41 +1394,34 @@ const Dashboard = () => {
           </div>
         </header>
 
-        {/* Dashboard Dashboard Body */}
+        {/* Dashboard Main Body */}
         <main className="p-6 md:p-8 flex-1 overflow-y-auto max-w-7xl w-full mx-auto space-y-8">
-          {/* Welcome banner */}
-          <div className="relative rounded-2xl overflow-hidden border border-blue-500 bg-gradient-to-r from-blue-600 to-indigo-700 p-8 shadow-xl text-white">
-            <div className="relative z-10 space-y-2">
-              <h2 className="text-2xl md:text-3xl font-extrabold">
-                Welcome to HackPilot, {user?.name || 'Developer'}!
-              </h2>
-              <p className="text-blue-100 max-w-xl text-sm md:text-base leading-relaxed">
-                Your beginner-friendly MERN stack workspace is successfully configured. Customize this layout and start building features for your hackathon management dashboard!
-              </p>
-              <div className="pt-2 flex flex-wrap gap-3">
-                <span className="text-xs px-3 py-1.5 rounded-lg bg-white/20 text-white font-semibold backdrop-blur-xs">
-                  Node.js / Express
-                </span>
-                <span className="text-xs px-3 py-1.5 rounded-lg bg-white/20 text-white font-semibold backdrop-blur-xs">
-                  React (Vite)
-                </span>
-                <span className="text-xs px-3 py-1.5 rounded-lg bg-white/20 text-white font-semibold backdrop-blur-xs">
-                  MongoDB
-                </span>
-                <span className="text-xs px-3 py-1.5 rounded-lg bg-white/20 text-white font-semibold backdrop-blur-xs">
-                  Tailwind CSS v4
-                </span>
-              </div>
-            </div>
-          </div>
 
           {/* Dynamic Role-Based Views Section */}
           <div className="space-y-4">
-            <h3 className="text-lg font-bold text-slate-800 border-b border-slate-200 pb-2">
-              Role-Specific Workspace: <span className="text-blue-600 capitalize">{user?.role}</span>
-            </h3>
 
-            {user?.role === 'admin' && (
+            {/* Overview tab: role-aware greeting header */}
+            {activeTab === 'overview' && (
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200">
+                <div>
+                  <h2 className="text-2xl font-extrabold text-slate-900">
+                    {user?.role === 'organizer' && 'Organizer Overview'}
+                    {user?.role === 'participant' && 'Participant Dashboard'}
+                    {user?.role === 'judge' && 'Judge Panel'}
+                    {user?.role === 'admin' && 'Admin Console'}
+                  </h2>
+                  <p className="text-sm text-slate-500 mt-0.5">
+                    Welcome back, <span className="font-semibold text-slate-700">{user?.name || 'User'}</span> — here's what's happening today.
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-blue-50 text-blue-700 font-bold border border-blue-200 capitalize">
+                  {user?.role}
+                </span>
+              </div>
+            )}
+
+            {/* Admin: overview cards — only on overview tab */}
+            {user?.role === 'admin' && activeTab === 'overview' && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="p-6 rounded-xl border border-slate-200 bg-white space-y-3 shadow-sm">
                   <h4 className="font-bold text-slate-900 flex items-center gap-2">
